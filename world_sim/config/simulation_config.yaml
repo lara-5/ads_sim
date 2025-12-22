@@ -1,0 +1,17 @@
+{
+  "simulation_days": 100,
+  "agents_count": 100,
+  "ads_count": 100,
+  "no_agents_exposed_to_ad": 10,
+  "actions": ["click", "like", "dislike", "ignore", "share"],
+  "action_compatibility": {
+    "ignore": ["share"],
+    "click": ["like", "dislike", "share"],
+    "like": ["click", "share"],
+    "dislike": ["click", "share"],
+    "share": ["like", "dislike", "click"]
+  },
+  "update_frequency": "daily",
+  "seed": 42,
+  "evaluation_starting_day": 10
+}

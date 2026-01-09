@@ -25,7 +25,10 @@ Implement the logic that queries the prediction model, selects agents based on g
 
 #### Subtasks
 1. **Create a function to query the model** - API client for prediction endpoint
-2. **Create a function to randomly select agents for the ad** - Implement proportional selection algorithm
+- Define the function that queryies the model for the prediction 
+- tbd., exact endpoint is not defined yet
+2. **Create a function to randomly select agents for reacting** - Implement proportional selection algorithm
+model will return the array 
 3. **Create a function to format and send prompts** - LLM prompt generation and API calls
 
 #### Dependencies

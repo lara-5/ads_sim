@@ -22,10 +22,13 @@ Design and implement a robust system for storing all agent-ad interactions in Du
 
 #### Subtasks
 1. **Create an interaction history management system that stores each interaction** - Design database schema and storage functions
-2. **Create multiple schemes for agent history data compression** - Implement 3 different compression approaches
-3. **Select the best compression system** - Evaluate based on context size vs. information quality
-4. **Refine the final design** - Optimize selected approach
-
+2. **Select the best compression system** - Evaluate possibilities
+- vector emotional model with acute and bias emotional effects is estimated to be the best fit, with open posibility for changing the model if major flaws in this model appears during implementation or simulation
+- the system will describe agent's shift in emotion, and it will describe acute emotional effects which will be short therm reaction to ad and will decay fast and completely reset at the end of the day and bias which will show longer-therm consenquences of the interaction and will decay slower over time
+3. **Create the compression system** - Define where and how will this system be implemented (not to be implemented yet)
+- the system will be implemented in User class
+- each user will be given the the emotional state features: acute_irritation, acute_interest, acute_arousal, bias_irritation, bias_trust, bias_fatigue
+- agent will respond with emotionional state shifts for each feature
 #### Dependencies
 - None (foundational infrastructure)
 

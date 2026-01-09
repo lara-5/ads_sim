@@ -1,8 +1,11 @@
 {
   "simulation_days": 100,
-  "agents_count": 100,
+  "agents_count": 50,
   "ads_count": 100,
-  "no_agents_exposed_to_ad": 10,
+  "agents_exposed_to_ad": 20,
+  "new_ads_per_day": 5,
+  "max_ads_shown_per_day": 10,
+  "ad_deactivation_threshold": -5,
   "actions": ["click", "like", "dislike", "ignore", "share"],
   "action_compatibility": {
     "ignore": ["share"],

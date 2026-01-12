@@ -19,7 +19,7 @@ Process the RedDust dataset to extract personal features and generate propensity
 #### Subtasks
 1. **Extract features from dataset** - Process RedDust dataset to extract personal features
 - fetch data using Zendo endpoint: https://zenodo.org/api/records/3541657 
-- create a dataframe that assigns each row with id, combines features, how to combine them is explained in dataset's README
+- create a dataframe that assigns each row with user_id, combines features, how to combine them is explained in dataset's README
 2. **EDA analysis** - do a quick EDA on dataframe
 - remove any missing rows
 - visualise distributions and correlations
@@ -34,17 +34,8 @@ Process the RedDust dataset to extract personal features and generate propensity
 - Simulation config (number of agents, seed)
 
 #### Output
-- `data/users.json` - 100 agent descriptions
-- Agent creation script
-- Initial grouping results
-- Documentation of feature extraction and generation process
-
-#### How to test
-- Verify 100 agents created
-- Check feature completeness for all agents
-- Validate propensity features are in [0,100] range
-- Test grouping produces reasonable clusters
-- Verify JSON structure matches specification
+- `user_feature_extraction/user_feature_extraction.ipynb` - user feature extraction script 
+- `data/users.csv` - agent descriptions
 
 ## Workflow, algorithms and procedures
 

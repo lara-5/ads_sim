@@ -86,7 +86,6 @@ Extracting agent features and creating agents.
   <tr><td>Extract features from dataset</td><td>Not started</td></tr>
   <tr><td>Generate random features</td><td>Not started</td></tr>
   <tr><td>Create agents using the agent template</td><td>Not started</td></tr>
-  <tr><td>Create a model to group agents</td><td>Not started</td></tr>
 </table>
 
 # Ad Target Public Prediction Model (TPPM) <br> <div style="display:flex; justify-content:space-between; align-items:center;">  <span style="font-size:16px;">Subject: ML</span>  <span style="font-size:16px;">Status: Not started</span></div>
@@ -103,7 +102,7 @@ Creating a model that predicts how each group of agents will respond to a given 
 
 # Grouping Agents ML Model (GAM) <br> <div style="display:flex; justify-content:space-between; align-items:center;">  <span style="font-size:16px;">Subject: ML</span>  <span style="font-size:16px;">Status: Not started</span></div>
 
-Creating a model that groups agents based on interaction history. Optionally, manually select a representative as the group’s starting center.
+Creating a model that groups agents based on features and interaction history. Optionally, manually select a representative as the group’s starting center.
 
 ### Subtasks
 <table style="width:100%; border-collapse:collapse;">

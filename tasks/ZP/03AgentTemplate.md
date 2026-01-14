@@ -73,9 +73,23 @@ P(friendship) = 0.7 * normalize(compatibility)+ 0.3 * random_noise
 - in `world/simulator.ipynb` - User class implementation, friendships relations, user list 
 
 ## Workflow, algorithms and procedures
+The agent's feature set was expanded to include personal, propensity, and emotional state features, providing a comprehensive view of each agent. A User class was developed to encapsulate these features, with methods for assigning propensity features, managing friend lists, and formatting data for prompt messages.
+Friendship simulation was implemented by calculating a compatibility score based on shared attributes such as age, family status, gender, hobbies, and profession, as well as propensity features. This score, combined with a random noise component, determines the probability of friendship formation. User instances were created from a CSV file, and the friendship simulation was run to establish a social network.
+
+The process is as follows:
+1. Load user data from users_features.csv.
+2. For each user, create a User object.
+3. For each pair of users, calculate a compatibility score.
+4. Use the compatibility score and a random factor to determine whether they become friends.
+5. If they become friends, add each user to the other's friend list.
+6. The created objects are returned to be used in the next steps of the simulation.
 
 ## Issues and challenges
+The current friendship model relies on a static set of features and does not account for dynamic changes in user behavior or preferences over time. The compatibility calculation is based on a weighted sum of similarities, which may not accurately capture the complex nature of human relationships. Additionally, the random noise component, while introducing stochasticity, does not model the real-world factors that can influence friendship formation.
+
 
 ## Results and conclusions
+The User class and friendship simulation provide a foundational framework for modeling social interactions within the simulation. By creating a network of agents with diverse characteristics and relationships, we can now explore how information and influence spread through the system. The to_message_format method allows for easy integration with other components that require agent data in a structured format.
+Future work should focus on refining the friendship model to incorporate dynamic features and more sophisticated compatibility metrics. Additionally, the impact of the social network on agent behavior and decision-making should be investigated to validate the model's effectiveness.
 
 ## Notes

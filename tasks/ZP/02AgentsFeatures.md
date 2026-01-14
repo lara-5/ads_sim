@@ -34,24 +34,29 @@ Process the RedDust dataset to extract personal features and generate propensity
 - Simulation config (number of agents, seed)
 
 #### Output
-- `user_feature_extraction/user_feature_extraction.ipynb` - user feature extraction script 
+- `user_feature_extraction/user_feature_extraction.py` - user feature extraction script 
 - `data/users.csv` - agent descriptions
 
 ## Workflow, algorithms and procedures
-1. **Data Fetching**: The script starts by fetching metadata from the Zenodo API endpoint for the RedDust dataset. It extracts the download links for `dataset.csv` and `documentation.csv`.
-2. **Data Loading**: Using the obtained links, the script downloads the CSV files and loads them into pandas DataFrames.
-3. **Data Processing**: A `user_id` is assigned to each row in the dataset, effectively treating each row as a unique user. The script also loads the documentation to provide context for the features.
-4. **Exploratory Data Analysis (EDA)**: The script performs basic EDA by checking for missing values and removing them. It then visualizes the distributions of key demographic and personality features (age, gender, openness, agreeableness, conscientiousness, extraversion) and calculates a correlation matrix to understand the relationships between features.
-5. **Agent Selection**: To create a manageable and diverse set of agents for the simulation, a random sample of 1000 users is selected from the processed dataset. A fixed random state is used for reproducibility.
-6. **Data Saving**: The final DataFrame containing the selected agents and their features is saved to `data/users_features.csv`.
+1.  **Data Fetching**: The script starts by fetching metadata from the Zenodo API endpoint for the RedDust dataset. It extracts the download links for the raw data files.
+2.  **Data Loading**: The script downloads the raw text files containing user features like age, gender, profession, hobby, and family status.
+3.  **Data Processing**: The script then processes these files to create a single aggregated dataset. It samples 1000 users and creates a dataframe with one row per user, containing all their features. 
+4.  **Exploratory Data Analysis (EDA)**: The script performs an EDA on the cleaned dataset. 
+    - It visualizes the distribution of numerical features (age) using histograms to understand the age spread of the users.
+    - It visualizes the distribution of categorical features (gender, profession, hobby, family) using count plots to see the composition of the user base.
+    - It removes any rows with missing data to ensure the quality of the dataset.
+    - It removes lines with hobbies and professions esstimated to be invalid
+5.  **Agent Selection**: All users with multiple hobbies are selected because they carry more information. The rest users are choosen randomly, but each with different proffesion.
+6.  **Data filling**: Although not the best practice, data is modified and each user is given 3 to 7 new hobbies.
 
 ## Issues and challenges
 - The dataset documentation (`documentation.csv`) did not contain clear instructions on how to combine features. For this task, we assumed a one-to-one mapping between rows in `dataset.csv` and individual users.
-- The selection of agents is random. For a more targeted simulation, a more sophisticated sampling method like stratified sampling or clustering could be used to ensure the representation of specific user profiles.
+- Adding almost random hobbies to users is definitely not the best practice. The better solution would be to find a new dataset with better user descriptions or create the new dataset that fits this project.
 
 ## Results and conclusions
 - A Marimo-based Python script (`user_feature_extraction/user_feature_extraction.py`) was created to automate the process of fetching, cleaning, analyzing, and selecting user features.
-- An EDA was performed, revealing the basic statistical properties and distributions of the user features.
-- A dataset of 1000 users with diverse features was generated and saved to `data/users_features.csv`, ready to be used in the simulation. This provides a solid foundation for the agent-based modeling part of the project.
+- An EDA was performed, revealing the basic statistical properties and distributions of the user features. The analysis shows a diverse range of ages, professions, and hobbies. For example, the age distribution is skewed towards younger users, and there is a wide variety of professions and hobbies.
+- A dataset of 1000 users with diverse features was generated and saved to `data/users_features.csv`, ready to be used in the simulation. After cleaning, all 1000 users were kept as they had complete data, providing a solid foundation for the agent-based modeling part of the project.
 
 ## Notes
+The agent selection process can be refined in the future to select a subset of agents based on specific criteria, such as selecting a certain number of agents from each profession or age group to create a more controlled simulation environment.

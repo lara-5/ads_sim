@@ -6,41 +6,73 @@ app = marimo.App()
 
 @app.cell
 def _():
-    import json
-    import random
-    import pandas as pd
-    import yaml
-    import context.simulation_state as simulation_state
-    return json, pd, random, yaml, simulation_state
-
-
-@app.cell
-def _(yaml):
-    # 01.1 Create world boundaries and specifications
-    with open("context/simulation_config.yaml", "r") as f:
-        config_str = f.read()
-
-    # YAML ne podržava list comprehension → evaluiramo ručno
-    config_str = config_str.replace(
-        "[for day in range(1, 86) if day % 5 != 0]",
-        str([day for day in range(1, 86) if day % 5 != 0]),
-    )
-
-    config = yaml.safe_load(config_str)
-    return (config,)
+    import marimo as mo
+    return (mo,)
 
 
 @app.cell
 def _():
-    # 01.2 State file
-    import context.simulation_state as simulation_state
-    state = simulation_state
+    import json
+    import random
+    import pandas as pd
+    import yaml
+    import copy
+    import numpy as np
+    return copy, json, np, pd, random, yaml
 
-    return state, simulation_state
+
+@app.cell
+def _(mo):
+    mo.md(r"""
+    # World Definition & Ad Creation
+    """)
+    return
+
+
+@app.cell
+def _(copy, yaml):
+    # 01.1 Create world boundaries and specifications
+    with open("context/simulation_config.yaml", "r") as f:
+        config_str = f.read()
+
+    _loaded_config = yaml.safe_load(config_str)
+
+    config = copy.deepcopy(_loaded_config)
+    return (config,)
+
+
+@app.cell
+def _(config):
+    config
+    return
+
+
+@app.cell
+def _(yaml):
+    # 01.2 Load simulation state
+    STATE_FILE = "context/simulation_state.yaml"
+
+    def load_state():
+        with open(STATE_FILE, "r") as f:
+            return yaml.safe_load(f)
+
+    def save_state(state):
+        with open(STATE_FILE, "w") as f:
+            yaml.safe_dump(state, f)
+
+    state = load_state()
+    return (state,)
+
+
+@app.cell
+def _(state):
+    state
+    return
 
 
 @app.cell
 def _(pd):
+    # 01.3 Create ad templates
     ads_features_df = pd.read_csv("data/ads_features.csv")
     ads_features_df
     return (ads_features_df,)
@@ -112,8 +144,9 @@ def _(config, json):
 
 
 @app.cell
-def _(config, random):
-    def day_of_entry_assignment(all_ads):
+def _(random):
+    # 01.4 Create the ads instances
+    def day_of_entry_assignment(all_ads, config):
         days_ads_can_enter = config["days_ads_can_enter"]
         new_ads_per_day = config["new_ads_per_day"]
 
@@ -129,15 +162,50 @@ def _(config, random):
                 continue
 
             day = days_ads_can_enter[day_index]
+
             if len(schedule[day]) < new_ads_per_day:
                 schedule[day].append(ad_id)
             else:
                 day_index += 1
                 if day_index < len(days_ads_can_enter):
-                    schedule[days_ads_can_enter[day_index]].append(ad_id)
+                    next_day = days_ads_can_enter[day_index]
+                    schedule[next_day].append(ad_id)
+                else:
+                    schedule[days_ads_can_enter[0]].append(ad_id)
 
         return schedule
+    return (day_of_entry_assignment,)
 
+
+@app.cell
+def _(Ad, ads_features_df, config, day_of_entry_assignment):
+    all_ads = []
+
+    for _, row in ads_features_df.iterrows():
+        ad = Ad(**row.to_dict())
+        all_ads.append(ad)
+
+    ads_entering_schedule = day_of_entry_assignment(all_ads, config)
+
+    for ad in all_ads:
+        for day, ad_ids in ads_entering_schedule.items():
+            if ad.ad_id in ad_ids:
+                ad.day_of_entry = day
+                break
+
+    print("len(all_ads)")
+    print(len(all_ads))
+    return (all_ads,)
+
+
+@app.cell
+def _(all_ads):
+    all_ads[0].to_message_format()
+    return
+
+
+@app.cell
+def _(config, random):
     def schedule_for_day(current_day, ads_entering_schedule, all_ads):
         if current_day in ads_entering_schedule:
             for ad_id in ads_entering_schedule[current_day]:
@@ -152,46 +220,435 @@ def _(config, random):
             return random.sample(active_ads, config["max_ads_shown_per_day"])
 
         return active_ads
-    return day_of_entry_assignment, schedule_for_day
+    return
 
 
 @app.cell
-def _(Ad, ads_features_df):
-    all_ads = []
-
-    for _, row in ads_features_df.iterrows():
-        ad = Ad(**row.to_dict())
-        all_ads.append(ad)
-
-    len(all_ads)
-    return (all_ads,)
+def _(mo):
+    mo.md(r"""
+    # Agent Template Creation
+    """)
+    return
 
 
 @app.cell
-def _(all_ads, day_of_entry_assignment):
-    ads_entering_schedule = day_of_entry_assignment(all_ads)
+def _(json, np):
+    class User:
+        def __init__(self, user_id, gender, age, profession, hobby, family):
+            self.user_id = user_id
+            self.gender = gender
+            self.age = age
+            self.profession = profession
+            self.hobby = hobby
+            self.family = family
+            self.friend_list = []
+            self.assign_propensity_features()
+            self.emotional_state = {
+                "acute_irritation": 0,
+                "acute_interest": 0,
+                "acute_arousal": 0,
+                "bias_irritation": 0,
+                "bias_trust": 0,
+                "bias_fatigue": 0,
+            }
 
-    with open("world/simulation_state.py", "w") as f:
-        f.write("current_simulation_day = 0\n")
-        f.write(f"ads_entering_schedule = {ads_entering_schedule}\n")
+        def assign_propensity_features(self):
+            self.activity_level = np.random.normal(50, 15)
+            self.risk_tolerance = np.random.normal(50, 15)
+            self.social_engagement = np.random.normal(50, 15)
 
-    ads_entering_schedule
-    return (ads_entering_schedule,)
+        def add_friend(self, user_id):
+            self.friend_list.append(user_id)
+
+        def to_message_format(self):
+            return json.dumps(
+                {
+                    "user_id": self.user_id,
+                    "gender": self.gender,
+                    "age": self.age,
+                    "profession": self.profession,
+                    "hobby": self.hobby,
+                    "family": self.family,
+                    "activity_level": self.activity_level,
+                    "risk_tolerance": self.risk_tolerance,
+                    "social_engagement": self.social_engagement,
+                    "emotional_state": self.emotional_state,
+                }
+            )
+    return (User,)
 
 
 @app.cell
-def _(ads_entering_schedule, all_ads, mo, pd, schedule_for_day):
-    current_day = mo.ui.slider(1, 85, value=1, label="Simulation day")
+def _(np):
+    def calculate_similarity(user1, user2, users):
+        age_similarity = np.exp(-abs(user1.age - user2.age) / 15)
+        family_similarity = 1 if user1.family == user2.family else 0
+        gender_similarity = 1 if user1.gender == user2.gender else 0
 
-    scheduled_ads = schedule_for_day(current_day.value, ads_entering_schedule, all_ads)
-    ads_df = pd.DataFrame([ad.__dict__ for ad in scheduled_ads])
+        hobbies1 = set(eval(user1.hobby))
+        hobbies2 = set(eval(user2.hobby))
+        hobby_similarity = len(hobbies1.intersection(hobbies2)) / len(hobbies1.union(hobbies2)) if len(hobbies1.union(hobbies2)) > 0 else 0
 
-    mo.vstack(
-        [
-            current_day,
-            mo.ui.table(ads_df),
-        ]
-    )
+        professions1 = set(eval(user1.profession))
+        professions2 = set(eval(user2.profession))
+        profession_similarity = 1 if professions1 == professions2 else 0
+
+        activity_similarity = 1 - abs(user1.activity_level - user2.activity_level) / 100
+        risk_similarity = 1 - abs(user1.risk_tolerance - user2.risk_tolerance) / 100
+        social_similarity = 1 - abs(user1.social_engagement - user2.social_engagement) / 100
+
+        mutual_friends = len(set(user1.friend_list).intersection(set(user2.friend_list)))
+        friend_of_friend = 0.1 * mutual_friends
+
+        compatibility = (
+            0.03 * age_similarity
+            + 0.02 * family_similarity
+            + 0.005 * gender_similarity
+            + 0.08 * hobby_similarity
+            + 0.04 * profession_similarity
+            + 0.05 * activity_similarity
+            + 0.04 * risk_similarity
+            + 0.03 * social_similarity
+            + 0.05 * friend_of_friend
+        )
+
+        return compatibility
+    return (calculate_similarity,)
+
+
+@app.cell
+def _(calculate_similarity, np):
+    def friendship_simulation(users, friendship_threshold):
+        for i in range(len(users)):
+            for j in range(i + 1, len(users)):
+                user1 = users[i]
+                user2 = users[j]
+
+                compatibility = calculate_similarity(user1, user2, users)
+                random_noise = np.random.uniform(0, 1)
+
+                p_friendship = 0.7 * compatibility + 0.3 * random_noise
+
+                if p_friendship > friendship_threshold:
+                    user1.add_friend(user2.user_id)
+                    user2.add_friend(user1.user_id)
+
+    return (friendship_simulation,)
+
+
+@app.cell
+def _(User, config, friendship_simulation, pd):
+    users_df = pd.read_csv("data/users_features.csv")
+    all_users = [User(**row.to_dict()) for _, row in users_df.iterrows()]
+    friendship_simulation(all_users, config["friendship_threshold"])
+    return (all_users,)
+
+
+@app.cell
+def _(all_users):
+    for u in all_users:
+        print(u.friend_list)
+        print(len(u.friend_list))
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
+    return
+
+
+@app.cell
+def _():
     return
 
 

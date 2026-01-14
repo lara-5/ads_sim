@@ -1,0 +1,1049 @@
+{
+  "version": "1",
+  "metadata": {
+    "marimo_version": "0.19.2"
+  },
+  "cells": [
+    {
+      "id": "Hbol",
+      "code_hash": "1d0db38904205bec4d6f6f6a1f6cec3e",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "MJUe",
+      "code_hash": "e46ef17ccaee7c636de7af7a3f16bc5d",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "vblA",
+      "code_hash": "9573a0b08f5f2a966a8dfcc371769b7d",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h1 id=\"world-definition-ad-creation\">World Definition &amp; Ad Creation</h1></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "bkHC",
+      "code_hash": "0df090c2c2f58a608c85bfdf9717b30a",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "lEQa",
+      "code_hash": "2245023265ae4cf87d02c8b6ba991139",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "application/json": "{\"simulation_days\": 100, \"agents_count\": 50, \"ads_count\": 100, \"agents_exposed_to_ad\": 20, \"new_ads_per_day\": 5, \"days_ads_can_enter\": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80], \"max_ads_shown_per_day\": 10, \"ad_deactivation_threshold\": -5, \"actions\": [\"click\", \"like\", \"dislike\", \"ignore\", \"share\"], \"action_compatibility\": {\"ignore\": [\"share\"], \"click\": [\"like\", \"dislike\", \"share\"], \"like\": [\"click\", \"share\"], \"dislike\": [\"click\", \"share\"], \"share\": [\"like\", \"dislike\", \"click\"]}, \"update_frequency\": \"daily\", \"seed\": 42, \"evaluation_starting_day\": 10, \"friendship_threshold\": \"text/plain+float:0.3\"}"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "PKri",
+      "code_hash": "67cf2bbae91d9bfc30d05286044bab5c",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Xref",
+      "code_hash": "9ed39e2ea931586b6a985a6942ef573e",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "application/json": "{\"ads_scheduled_for_day\": [], \"current_simulation_day\": 0}"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "SFPL",
+      "code_hash": "240dad85c20cddd0bff2d5adaefe62f7",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<marimo-ui-element object-id='SFPL-0' random-id='073a0265-7f67-d23b-7f6c-bdd3cf519c95'><marimo-table data-initial-value='[]' data-label='null' data-data='&quot;[{&#92;&quot;ad_id&#92;&quot;:0,&#92;&quot;group&#92;&quot;:&#92;&quot;financial_institutions&#92;&quot;,&#92;&quot;emotion_label&#92;&quot;:&#92;&quot;calm&#92;&quot;,&#92;&quot;message_type&#92;&quot;:&#92;&quot;informational&#92;&quot;,&#92;&quot;visual_style&#92;&quot;:&#92;&quot;product_focused&#92;&quot;,&#92;&quot;num_people&#92;&quot;:3,&#92;&quot;people_present&#92;&quot;:1,&#92;&quot;people_area_ratio&#92;&quot;:0.4793044529091626,&#92;&quot;product_present&#92;&quot;:0,&#92;&quot;product_area_ratio&#92;&quot;:0.0,&#92;&quot;object_count&#92;&quot;:3,&#92;&quot;object_list&#92;&quot;:&#92;&quot;[&#x27;person&#x27;, &#x27;person&#x27;, &#x27;person&#x27;]&#92;&quot;,&#92;&quot;dominant_element&#92;&quot;:&#92;&quot;person&#92;&quot;,&#92;&quot;text_present&#92;&quot;:1,&#92;&quot;text_area_ratio&#92;&quot;:0.2029538461538461,&#92;&quot;avg_font_size_proxy&#92;&quot;:13.764705882352942,&#92;&quot;dominant_colors&#92;&quot;:&#92;&quot;[&#x27;#eee5de&#x27;, &#x27;#2c2831&#x27;, &#x27;#b26651&#x27;]&#92;&quot;,&#92;&quot;brightness_category&#92;&quot;:&#92;&quot;light&#92;&quot;,&#92;&quot;saturation_category&#92;&quot;:&#92;&quot;balanced&#92;&quot;,&#92;&quot;hue_category&#92;&quot;:&#92;&quot;green&#92;&quot;,&#92;&quot;visual_impact&#92;&quot;:0.534704705882353},{&#92;&quot;ad_id&#92;&quot;:1,&#92;&quot;group&#92;&quot;:&#92;&quot;food&#92;&quot;,&#92;&quot;emotion_label&#92;&quot;:&#92;&quot;exciting&#92;&quot;,&#92;&quot;message_type&#92;&quot;:&#92;&quot;informational&#92;&quot;,&#92;&quot;visual_style&#92;&quot;:&#92;&quot;product_focused&#92;&quot;,&#92;&quot;num_people&#92;&quot;:1,&#92;&quot;people_present&#92;&quot;:1,&#92;&quot;people_area_ratio&#92;&quot;:0.0186517816352554,&#92;&quot;product_present&#92;&quot;:0,&#92;&quot;product_area_ratio&#92;&quot;:0.0,&#92;&quot;object_count&#92;&quot;:1,&#92;&quot;object_list&#92;&quot;:&#92;&quot;[&#x27;person&#x27;]&#92;&quot;,&#92;&quot;dominant_element&#92;&quot;:&#92;&quot;person&#92;&quot;,&#92;&quot;text_present&#92;&quot;:1,&#92;&quot;text_area_ratio&#92;&quot;:0.1001377250756873,&#92;&quot;avg_font_size_proxy&#92;&quot;:44.48950913907004,&#92;&quot;dominant_colors&#92;&quot;:&#92;&quot;[&#x27;#b12c28&#x27;, &#x27;#d7a83b&#x27;, &#x27;#ebdcbc&#x27;]&#92;&quot;,&#92;&quot;brightness_category&#92;&quot;:&#92;&quot;light&#92;&quot;,&#92;&quot;saturation_category&#92;&quot;:&#92;&quot;vibrant&#92;&quot;,&#92;&quot;hue_category&#92;&quot;:&#92;&quot;red&#92;&quot;,&#92;&quot;visual_impact&#92;&quot;:0.7273358823529412},{&#92;&quot;ad_id&#92;&quot;:2,&#92;&quot;group&#92;&quot;:&#92;&quot;electronics&#92;&quot;,&#92;&quot;emotion_label&#92;&quot;:&#92;&quot;exciting&#92;&quot;,&#92;&quot;message_type&#92;&quot;:&#92;&quot;informational&#92;&quot;,&#92;&quot;visual_style&#92;&quot;:&#92;&quot;product_focused&#92;&quot;,&#92;&quot;num_people&#92;&quot;:0,&#92;&quot;people_present&#92;&quot;:0,&#92;&quot;people_area_ratio&#92;&quot;:0.0,&#92;&quot;product_present&#92;&quot;:1,&#92;&quot;product_area_ratio&#92;&quot;:0.550735041267199,&#92;&quot;object_count&#92;&quot;:2,&#92;&quot;object_list&#92;&quot;:&#92;&quot;[&#x27;cell phone&#x27;, &#x27;cell phone&#x27;]&#92;&quot;,&#92;&quot;dominant_element&#92;&quot;:&#92;&quot;cell phone&#92;&quot;,&#92;&quot;text_present&#92;&quot;:1,&#92;&quot;text_area_ratio&#92;&quot;:0.0789683538079336,&#92;&quot;avg_font_size_proxy&#92;&quot;:54.19155559371171,&#92;&quot;dominant_colors&#92;&quot;:&#92;&quot;[&#x27;#37474d&#x27;, &#x27;#060c0f&#x27;, &#x27;#748f97&#x27;]&#92;&quot;,&#92;&quot;brightness_category&#92;&quot;:&#92;&quot;dark&#92;&quot;,&#92;&quot;saturation_category&#92;&quot;:&#92;&quot;balanced&#92;&quot;,&#92;&quot;hue_category&#92;&quot;:&#92;&quot;blue&#92;&quot;,&#92;&quot;visual_impact&#92;&quot;:0.3219272549019608},{&#92;&quot;ad_id&#92;&quot;:3,&#92;&quot;group&#92;&quot;:&#92;&quot;food&#92;&quot;,&#92;&quot;emotion_label&#92;&quot;:&#92;&quot;joy&#92;&quot;,&#92;&quot;message_type&#92;&quot;:&#92;&quot;informational&#92;&quot;,&#92;&quot;visual_style&#92;&quot;:&#92;&quot;product_focused&#92;&quot;,&#92;&quot;num_people&#92;&quot;:0,&#92;&quot;people_present&#92;&quot;:0,&#92;&quot;people_area_ratio&#92;&quot;:0.0,&#92;&quot;product_present&#92;&quot;:1,&#92;&quot;product_area_ratio&#92;&quot;:0.8231063316423227,&#92;&quot;object_count&#92;&quot;:2,&#92;&quot;object_list&#92;&quot;:&#92;&quot;[&#x27;bed&#x27;, &#x27;dining table&#x27;]&#92;&quot;,&#92;&quot;dominant_element&#92;&quot;:&#92;&quot;dining table&#92;&quot;,&#92;&quot;text_present&#92;&quot;:1,&#92;&quot;text_area_ratio&#92;&quot;:0.0854374557209278,&#92;&quot;avg_font_size_proxy&#92;&quot;:30.83333333333333,&#92;&quot;dominant_colors&#92;&quot;:&#92;&quot;[&#x27;#d1c7c4&#x27;, &#x27;#b19c8e&#x27;, &#x27;#714f44&#x27;]&#92;&quot;,&#92;&quot;brightness_category&#92;&quot;:&#92;&quot;light&#92;&quot;,&#92;&quot;saturation_category&#92;&quot;:&#92;&quot;muted&#92;&quot;,&#92;&quot;hue_category&#92;&quot;:&#92;&quot;green&#92;&quot;,&#92;&quot;visual_impact&#92;&quot;:0.4422198039215686},{&#92;&quot;ad_id&#92;&quot;:4,&#92;&quot;group&#92;&quot;:&#92;&quot;body_wear&#92;&quot;,&#92;&quot;emotion_label&#92;&quot;:&#92;&quot;exciting&#92;&quot;,&#92;&quot;message_type&#92;&quot;:&#92;&quot;informational&#92;&quot;,&#92;&quot;visual_style&#92;&quot;:&#92;&quot;product_focused&#92;&quot;,&#92;&quot;num_people&#92;&quot;:1,&#92;&quot;people_present&#92;&quot;:1,&#92;&quot;people_area_ratio&#92;&quot;:0.4564536435442956,&#92;&quot;product_present&#92;&quot;:1,&#92;&quot;product_area_ratio&#92;&quot;:0.1384815126391672,&#92;&quot;object_count&#92;&quot;:3,&#92;&quot;object_list&#92;&quot;:&#92;&quot;[&#x27;person&#x27;, &#x27;skateboard&#x27;, &#x27;skateboard&#x27;]&#92;&quot;,&#92;&quot;dominant_element&#92;&quot;:&#92;&quot;person&#92;&quot;,&#92;&quot;text_present&#92;&quot;:1,&#92;&quot;text_area_ratio&#92;&quot;:0.1200525407220521,&#92;&quot;avg_font_size_proxy&#92;&quot;:102.51517849701756,&#92;&quot;dominant_colors&#92;&quot;:&#92;&quot;[&#x27;#bac9d6&#x27;, &#x27;#7494ab&#x27;, &#x27;#393945&#x27;]&#92;&quot;,&#92;&quot;brightness_category&#92;&quot;:&#92;&quot;light&#92;&quot;,&#92;&quot;saturation_category&#92;&quot;:&#92;&quot;balanced&#92;&quot;,&#92;&quot;hue_category&#92;&quot;:&#92;&quot;blue&#92;&quot;,&#92;&quot;visual_impact&#92;&quot;:0.4685325490196078},{&#92;&quot;ad_id&#92;&quot;:5,&#92;&quot;group&#92;&quot;:&#92;&quot;food&#92;&quot;,&#92;&quot;emotion_label&#92;&quot;:&#92;&quot;calm&#92;&quot;,&#92;&quot;message_type&#92;&quot;:&#92;&quot;informational&#92;&quot;,&#92;&quot;visual_style&#92;&quot;:&#92;&quot;lifestyle&#92;&quot;,&#92;&quot;num_people&#92;&quot;:1,&#92;&quot;people_present&#92;&quot;:1,&#92;&quot;people_area_ratio&#92;&quot;:0.678975505299398,&#92;&quot;product_present&#92;&quot;:1,&#92;&quot;product_area_ratio&#92;&quot;:0.2774512427408919,&#92;&quot;object_count&#92;&quot;:2,&#92;&quot;object_list&#92;&quot;:&#92;&quot;[&#x27;person&#x27;, &#x27;book&#x27;]&#92;&quot;,&#92;&quot;dominant_element&#92;&quot;:&#92;&quot;person&#92;&quot;,&#92;&quot;text_present&#92;&quot;:1,&#92;&quot;text_area_ratio&#92;&quot;:0.1206451620735663,&#92;&quot;avg_font_size_proxy&#92;&quot;:64.66397742453537,&#92;&quot;dominant_colors&#92;&quot;:&#92;&quot;[&#x27;#ca6c4d&#x27;, &#x27;#7c4d42&#x27;, &#x27;#d3b4a5&#x27;]&#92;&quot;,&#92;&quot;brightness_category&#92;&quot;:&#92;&quot;light&#92;&quot;,&#92;&quot;saturation_category&#92;&quot;:&#92;&quot;balanced&#92;&quot;,&#92;&quot;hue_category&#92;&quot;:&#92;&quot;red&#92;&quot;,&#92;&quot;visual_impact&#92;&quot;:0.5846729411764706},{&#92;&quot;ad_id&#92;&quot;:6,&#92;&quot;group&#92;&quot;:&#92;&quot;vehicles&#92;&quot;,&#92;&quot;emotion_label&#92;&quot;:&#92;&quot;exciting&#92;&quot;,&#92;&quot;message_type&#92;&quot;:&#92;&quot;informational&#92;&quot;,&#92;&quot;visual_style&#92;&quot;:&#92;&quot;product_focused&#92;&quot;,&#92;&quot;num_people&#92;&quot;:1,&#92;&quot;people_present&#92;&quot;:1,&#92;&quot;people_area_ratio&#92;&quot;:0.1258707146522927,&#92;&quot;product_present&#92;&quot;:1,&#92;&quot;product_area_ratio&#92;&quot;:0.3925371672100382,&#92;&quot;object_count&#92;&quot;:2,&#92;&quot;object_list&#92;&quot;:&#92;&quot;[&#x27;motorcycle&#x27;, &#x27;person&#x27;]&#92;&quot;,&#92;&quot;dominant_element&#92;&quot;:&#92;&quot;motorcycle&#92;&quot;,&#92;&quot;text_present&#92;&quot;:1,&#92;&quot;text_area_ratio&#92;&quot;:0.1029622980251346,&#92;&quot;avg_font_size_proxy&#92;&quot;:32.888888888888886,&#92;&quot;dominant_colors&#92;&quot;:&#92;&quot;[&#x27;#b3bdc5&#x27;, &#x27;#2e2b2e&#x27;, &#x27;#676e78&#x27;]&#92;&quot;,&#92;&quot;brightness_category&#92;&quot;:&#92;&quot;medium&#92;&quot;,&#92;&quot;saturation_category&#92;&quot;:&#92;&quot;muted&#92;&quot;,&#92;&quot;hue_category&#92;&quot;:&#92;&quot;blue&#92;&quot;,&#92;&quot;visual_impact&#92;&quot;:0.3140349019607843},{&#92;&quot;ad_id&#92;&quot;:7,&#92;&quot;group&#92;&quot;:&#92;&quot;vehicles&#92;&quot;,&#92;&quot;emotion_label&#92;&quot;:&#92;&quot;exciting&#92;&quot;,&#92;&quot;message_type&#92;&quot;:&#92;&quot;informational&#92;&quot;,&#92;&quot;visual_style&#92;&quot;:&#92;&quot;product_focused&#92;&quot;,&#92;&quot;num_people&#92;&quot;:0,&#92;&quot;people_present&#92;&quot;:0,&#92;&quot;people_area_ratio&#92;&quot;:0.0,&#92;&quot;product_present&#92;&quot;:1,&#92;&quot;product_area_ratio&#92;&quot;:0.1408510568146749,&#92;&quot;object_count&#92;&quot;:1,&#92;&quot;object_list&#92;&quot;:&#92;&quot;[&#x27;truck&#x27;]&#92;&quot;,&#92;&quot;dominant_element&#92;&quot;:&#92;&quot;truck&#92;&quot;,&#92;&quot;text_present&#92;&quot;:1,&#92;&quot;text_area_ratio&#92;&quot;:0.2315440313903159,&#92;&quot;avg_font_size_proxy&#92;&quot;:26.0,&#92;&quot;dominant_colors&#92;&quot;:&#92;&quot;[&#x27;#252021&#x27;, &#x27;#684244&#x27;, &#x27;#a7a4a4&#x27;]&#92;&quot;,&#92;&quot;brightness_category&#92;&quot;:&#92;&quot;dark&#92;&quot;,&#92;&quot;saturation_category&#92;&quot;:&#92;&quot;muted&#92;&quot;,&#92;&quot;hue_category&#92;&quot;:&#92;&quot;green&#92;&quot;,&#92;&quot;visual_impact&#92;&quot;:0.1951031372549019},{&#92;&quot;ad_id&#92;&quot;:8,&#92;&quot;group&#92;&quot;:&#92;&quot;sports&#92;&quot;,&#92;&quot;emotion_label&#92;&quot;:&#92;&quot;exciting&#92;&quot;,&#92;&quot;message_type&#92;&quot;:&#92;&quot;emotional&#92;&quot;,&#92;&quot;visual_style&#92;&quot;:&#92;&quot;product_focused&#92;&quot;,&#92;&quot;num_people&#92;&quot;:1,&#92;&quot;people_present&#92;&quot;:1,&#92;&quot;people_area_ratio&#92;&quot;:0.2324169312234828,&#92;&quot;product_present&#92;&quot;:0,&#92;&quot;product_area_ratio&#92;&quot;:0.0,&#92;&quot;object_count&#92;&quot;:1,&#92;&quot;object_list&#92;&quot;:&#92;&quot;[&#x27;person&#x27;]&#92;&quot;,&#92;&quot;dominant_element&#92;&quot;:&#92;&quot;person&#92;&quot;,&#92;&quot;text_present&#92;&quot;:1,&#92;&quot;text_area_ratio&#92;&quot;:0.2504574069040159,&#92;&quot;avg_font_size_proxy&#92;&quot;:45.8463104698462,&#92;&quot;dominant_colors&#92;&quot;:&#92;&quot;[&#x27;#9fbbc9&#x27;, &#x27;#736465&#x27;, &#x27;#dee6ea&#x27;]&#92;&quot;,&#92;&quot;brightness_category&#92;&quot;:&#92;&quot;light&#92;&quot;,&#92;&quot;saturation_category&#92;&quot;:&#92;&quot;muted&#92;&quot;,&#92;&quot;hue_category&#92;&quot;:&#92;&quot;green&#92;&quot;,&#92;&quot;visual_impact&#92;&quot;:0.483758431372549},{&#92;&quot;ad_id&#92;&quot;:9,&#92;&quot;group&#92;&quot;:&#92;&quot;vehicles&#92;&quot;,&#92;&quot;emotion_label&#92;&quot;:&#92;&quot;exciting&#92;&quot;,&#92;&quot;message_type&#92;&quot;:&#92;&quot;informational&#92;&quot;,&#92;&quot;visual_style&#92;&quot;:&#92;&quot;complex&#92;&quot;,&#92;&quot;num_people&#92;&quot;:0,&#92;&quot;people_present&#92;&quot;:0,&#92;&quot;people_area_ratio&#92;&quot;:0.0,&#92;&quot;product_present&#92;&quot;:1,&#92;&quot;product_area_ratio&#92;&quot;:0.4095897288897505,&#92;&quot;object_count&#92;&quot;:1,&#92;&quot;object_list&#92;&quot;:&#92;&quot;[&#x27;motorcycle&#x27;]&#92;&quot;,&#92;&quot;dominant_element&#92;&quot;:&#92;&quot;motorcycle&#92;&quot;,&#92;&quot;text_present&#92;&quot;:1,&#92;&quot;text_area_ratio&#92;&quot;:0.1490096192906611,&#92;&quot;avg_font_size_proxy&#92;&quot;:39.23836099265547,&#92;&quot;dominant_colors&#92;&quot;:&#92;&quot;[&#x27;#bec2c8&#x27;, &#x27;#2a2a2a&#x27;, &#x27;#976164&#x27;]&#92;&quot;,&#92;&quot;brightness_category&#92;&quot;:&#92;&quot;medium&#92;&quot;,&#92;&quot;saturation_category&#92;&quot;:&#92;&quot;muted&#92;&quot;,&#92;&quot;hue_category&#92;&quot;:&#92;&quot;blue&#92;&quot;,&#92;&quot;visual_impact&#92;&quot;:0.3759572549019608}]&quot;' data-total-rows='100' data-total-columns='21' data-max-columns='50' data-banner-text='&quot;&quot;' data-pagination='true' data-page-size='10' data-field-types='[[&quot;ad_id&quot;,[&quot;integer&quot;,&quot;int64&quot;]],[&quot;group&quot;,[&quot;string&quot;,&quot;object&quot;]],[&quot;emotion_label&quot;,[&quot;string&quot;,&quot;object&quot;]],[&quot;message_type&quot;,[&quot;string&quot;,&quot;object&quot;]],[&quot;visual_style&quot;,[&quot;string&quot;,&quot;object&quot;]],[&quot;num_people&quot;,[&quot;integer&quot;,&quot;int64&quot;]],[&quot;people_present&quot;,[&quot;integer&quot;,&quot;int64&quot;]],[&quot;people_area_ratio&quot;,[&quot;number&quot;,&quot;float64&quot;]],[&quot;product_present&quot;,[&quot;integer&quot;,&quot;int64&quot;]],[&quot;product_area_ratio&quot;,[&quot;number&quot;,&quot;float64&quot;]],[&quot;object_count&quot;,[&quot;integer&quot;,&quot;int64&quot;]],[&quot;object_list&quot;,[&quot;string&quot;,&quot;object&quot;]],[&quot;dominant_element&quot;,[&quot;string&quot;,&quot;object&quot;]],[&quot;text_present&quot;,[&quot;integer&quot;,&quot;int64&quot;]],[&quot;text_area_ratio&quot;,[&quot;number&quot;,&quot;float64&quot;]],[&quot;avg_font_size_proxy&quot;,[&quot;number&quot;,&quot;float64&quot;]],[&quot;dominant_colors&quot;,[&quot;string&quot;,&quot;object&quot;]],[&quot;brightness_category&quot;,[&quot;string&quot;,&quot;object&quot;]],[&quot;saturation_category&quot;,[&quot;string&quot;,&quot;object&quot;]],[&quot;hue_category&quot;,[&quot;string&quot;,&quot;object&quot;]],[&quot;visual_impact&quot;,[&quot;number&quot;,&quot;float64&quot;]]]' data-show-filters='true' data-show-download='true' data-show-column-summaries='true' data-show-data-types='true' data-show-page-size-selector='true' data-show-column-explorer='true' data-show-chart-builder='true' data-row-headers='[]' data-has-stable-row-id='false' data-lazy='false' data-preload='false'></marimo-table></marimo-ui-element>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "BYtC",
+      "code_hash": "4c70bff779b3c7db8ca7ce4adc50c9ef",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "RGSE",
+      "code_hash": "52a6702701e4331f88517351753a4d58",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Kclp",
+      "code_hash": "6d334249a373b77489f3f6ea02909403",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "len(all_ads)\n100\n",
+          "mimetype": "text/plain"
+        }
+      ]
+    },
+    {
+      "id": "emfo",
+      "code_hash": "57900195e12a914a6dd9f833ad7ea724",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<pre class='text-xs'>&#x27;{&quot;ad_id&quot;: 0, &quot;group&quot;: &quot;financial_institutions&quot;, &quot;emotion_label&quot;: &quot;calm&quot;, &quot;message_type&quot;: &quot;informational&quot;, &quot;visual_style&quot;: &quot;product_focused&quot;, &quot;num_people&quot;: 3, &quot;people_present&quot;: 1, &quot;people_area_ratio&quot;: 0.4793044529091626, &quot;product_present&quot;: 0, &quot;product_area_ratio&quot;: 0.0, &quot;object_count&quot;: 3, &quot;object_list&quot;: &quot;[\\&#x27;person\\&#x27;, \\&#x27;person\\&#x27;, \\&#x27;person\\&#x27;]&quot;, &quot;dominant_element&quot;: &quot;person&quot;, &quot;text_present&quot;: 1, &quot;text_area_ratio&quot;: 0.2029538461538461, &quot;avg_font_size_proxy&quot;: 13.764705882352942, &quot;dominant_colors&quot;: &quot;[\\&#x27;#eee5de\\&#x27;, \\&#x27;#2c2831\\&#x27;, \\&#x27;#b26651\\&#x27;]&quot;, &quot;brightness_category&quot;: &quot;light&quot;, &quot;saturation_category&quot;: &quot;balanced&quot;, &quot;hue_category&quot;: &quot;green&quot;, &quot;visual_impact&quot;: 0.534704705882353, &quot;day_of_entry&quot;: 45, &quot;interaction_rate&quot;: 0, &quot;is_active&quot;: false}&#x27;</pre>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Hstk",
+      "code_hash": "fb4a4676099498d21ca45acb691d38f4",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "nWHF",
+      "code_hash": "35d62ec6861a772ab269995987919d62",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h1 id=\"agent-template-creation\">Agent Template Creation</h1></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "ROlb",
+      "code_hash": "fd71a95ad3c53a1de01b48e33f137572",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "qnkX",
+      "code_hash": "773fce3fc898e477ffb09801340d348e",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "TqIu",
+      "code_hash": "94c7df314728a6ac806ad924efaadf78",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "qXdJ",
+      "code_hash": "95f56aebc6d2f2267a3a36d9d08ea3f1",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Ytlw",
+      "code_hash": "94797cd7ec981b3eddfcab27c72a7426",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "[201, 345, 717, 755, 786, 812, 87, 522, 417, 613, 77]\n11\n[322, 332, 447, 730, 749, 909, 912, 834, 417, 890, 451]\n11\n[73, 434, 565, 730, 749, 812, 898, 909, 172, 451, 910, 77, 639]\n13\n[332, 362, 727, 730, 786, 835, 912, 551, 890, 277, 266, 910, 928, 639]\n14\n[149, 323, 434, 581, 717, 727, 730, 755, 818, 847, 898, 834, 522, 732, 613, 266, 910]\n17\n[322, 324, 332, 447, 565, 581, 749, 812, 898, 909, 452, 834, 417, 613, 266, 910, 570, 639]\n18\n[323, 332, 362, 565, 581, 818, 847, 909, 942, 87, 349, 834, 417, 551, 172, 277, 266, 910, 77, 928]\n20\n[149, 305, 323, 324, 434, 717, 812, 898, 909, 942, 912, 452, 87, 223, 417, 172, 266, 639]\n18\n[73, 434, 565, 744, 749, 755, 812, 847, 349, 522, 277, 910, 928]\n13\n[305, 324, 730, 744, 749, 786, 847, 349, 522, 551, 890, 639]\n12\n[201, 322, 332, 345, 447, 581, 749, 755, 786, 812, 818, 898, 452, 417, 551, 732, 172, 890, 266]\n19\n[149, 323, 434, 565, 727, 730, 755, 812, 909, 942, 87, 349, 551, 910]\n14\n[565, 730, 847, 898, 909, 452, 890, 266, 570]\n9\n[201, 323, 324, 345, 447, 517, 749, 818, 835, 452, 223, 732, 172, 277, 266, 910, 928]\n17\n[322, 323, 324, 434, 727, 730, 744, 818, 835, 349, 417, 551, 277, 77, 570, 639]\n16\n[73, 322, 332, 727, 730, 818, 912, 417, 551, 266, 639]\n11\n[305, 322, 447, 581, 717, 755, 786, 898, 87, 417, 732, 613, 266, 910]\n14\n[149, 201, 305, 322, 362, 447, 517, 581, 717, 755, 812, 818, 452, 87, 522, 732, 890, 613, 266, 77, 639]\n21\n[345, 362, 581, 755, 909, 942, 912, 452, 87, 834, 522, 551, 277, 613, 451, 928]\n16\n[149, 201, 323, 345, 362, 434, 565, 818, 835, 898, 912, 223, 522, 551, 732, 172, 277, 613, 451, 77, 570, 928]\n22\n[73, 322, 345, 434, 447, 727, 730, 744, 786, 835, 847, 87, 349, 834, 417, 551, 277, 910, 639]\n19\n[73, 305, 362, 434, 727, 755, 818, 898, 909, 349, 223, 834, 570, 928, 639]\n15\n[73, 201, 323, 332, 345, 434, 447, 730, 223, 551, 613, 266, 451, 570]\n14\n[322, 324, 434, 565, 581, 717, 730, 749, 786, 909, 452, 551, 890, 277, 451]\n15\n[305, 565, 581, 749, 755, 898, 912, 223, 551, 172, 890, 277, 451, 570, 639]\n15\n[322, 324, 345, 362, 517, 755, 452, 349, 223, 417, 451]\n11\n[201, 322, 323, 332, 434, 517, 727, 749, 786, 835, 909, 912, 834, 551, 890, 277, 910, 639]\n18\n[149, 201, 323, 324, 332, 447, 517, 744, 786, 818, 898, 452, 223, 910, 570, 928, 639]\n17\n[324, 332, 447, 744, 452, 834, 417, 551, 732, 890, 613, 266, 451, 910, 928]\n15\n[149, 305, 332, 717, 744, 749, 835, 898, 87, 223, 522, 551, 732, 613, 928]\n15\n[323, 332, 434, 517, 565, 730, 744, 818, 847, 909, 942, 87, 349, 223, 277, 613]\n16\n[73, 324, 332, 447, 727, 730, 744, 755, 912, 452, 349, 834, 551, 732, 890, 277, 613, 451, 910, 77, 570]\n21\n[324, 345, 362, 447, 581, 755, 786, 847, 452, 87, 223, 522, 551, 732, 890, 613, 266, 570, 928]\n19\n[332, 565, 749, 786, 812, 835, 847, 909, 912, 452, 349, 522, 551, 172, 613, 266, 910, 928]\n18\n[149, 322, 323, 324, 744, 755, 786, 898, 942, 87, 522, 172, 890, 266, 928]\n15\n[73, 322, 345, 362, 730, 744, 749, 912, 349, 223, 834, 172, 266, 928]\n14\n[73, 149, 323, 324, 332, 434, 581, 717, 727, 755, 847, 942, 551, 172, 277, 613, 910, 639]\n18\n[305, 324, 362, 434, 447, 581, 717, 744, 749, 755, 812, 818, 835, 898, 942, 912, 87, 349, 223, 417, 451, 77, 639]\n23\n[322, 434, 565, 727, 730, 749, 942, 912, 87, 349, 172, 266, 910, 570]\n14\n[201, 324, 332, 434, 565, 749, 835, 223, 834, 522, 417, 732, 277, 266, 910, 639]\n16\n[149, 305, 362, 434, 517, 730, 818, 835, 898, 942, 87, 349, 834, 266, 928]\n15\n[305, 324, 345, 565, 581, 744, 749, 755, 818, 835, 898, 452, 87, 417, 172, 613, 266, 451, 910, 77]\n20\n[73, 322, 323, 727, 730, 744, 749, 812, 942, 912, 452, 87, 349, 223, 417, 277, 910, 570, 928]\n19\n[305, 322, 323, 324, 332, 434, 517, 565, 717, 727, 730, 812, 942, 349, 223, 834, 522, 732, 172, 890, 277, 451]\n22\n[149, 201, 744, 749, 812, 818, 835, 847, 942, 87, 551, 277, 266, 928]\n14\n[201, 305, 322, 323, 324, 345, 447, 565, 727, 755, 898, 909, 942, 87, 223, 417, 732, 172, 277, 613, 77, 570, 928, 639]\n24\n[73, 201, 324, 581, 730, 749, 87, 551, 277, 910, 639]\n11\n[323, 517, 581, 749, 786, 812, 835, 909, 87, 349, 732, 613, 910, 639]\n14\n[305, 324, 345, 565, 744, 749, 786, 909, 942, 912, 349, 223, 834, 522, 890, 613, 451, 910]\n18\n[201, 305, 323, 332, 362, 581, 717, 730, 755, 786, 835, 898, 909, 417, 551, 172, 910, 77, 570]\n19\n",
+          "mimetype": "text/plain"
+        }
+      ]
+    },
+    {
+      "id": "wGYS",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "JlXM",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "yNpM",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "ybEu",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "gSxP",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "jovz",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "ngUJ",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "onmL",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "nPQG",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "PSYu",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "LCNh",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "BSPK",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "BoyM",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "ysxx",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "UqRO",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "qqiD",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "IqZk",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "GtIr",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "oEIZ",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "vNaU",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "TVVM",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "rPRY",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "RbiS",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "PgDq",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Fblc",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Zfzk",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "uHOr",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "byWg",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Rahm",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "wbHt",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "VREA",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "cckK",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "RMqP",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "ojeC",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "ZMZu",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "wqtQ",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "faHP",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "YqFA",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "MwVZ",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "dRGQ",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "oOYh",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "rGHi",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "MbIY",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "OBaN",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "nsmG",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "uDnW",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "YgUj",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "xSMT",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "vaHw",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "ZHZu",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "VBsr",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "ttHt",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "TkdS",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "YCYT",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "WiSz",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "GGQs",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "SjHy",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "yOwu",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "qcUE",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "RQur",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    }
+  ]
+}

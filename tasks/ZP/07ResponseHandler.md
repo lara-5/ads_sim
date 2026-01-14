@@ -29,7 +29,6 @@ Process agent responses from LLM, validate and store interactions, handle share 
 3. **Day simulation loop** - Create a loop that will call all the necessary functions for sending and processing the prompt
 - create a bach of code that:
     - checks which day it is in curent day state
-    - check if
     - calls the ad scheduling function
     - iterates trough that scheduled ads list
     - for each ad:
